@@ -1,7 +1,10 @@
+
+
 import type { Metadata } from "next";
 import { geistMono, geistSans } from "../config/fonts";
 import "./globals.css";
 
+import QueryClientProviderWrapper from "@/components/layout/QueryClientProviderWrapper";
 
 
 export const metadata: Metadata = {
@@ -18,13 +21,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
+
   return (
     <html lang="ru">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         
-        {children}
+        
+
+        <QueryClientProviderWrapper>{children}</QueryClientProviderWrapper>
+
+       
+        
+     
+        
+       
       </body>
     </html>
   );

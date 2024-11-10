@@ -1,6 +1,7 @@
 'use client'
 import helloWorldService from "@/services/HelloWorld.service";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 
 interface IHelloWorld {
   userId: number;
@@ -10,27 +11,30 @@ interface IHelloWorld {
 }
 
 export default function Home() {
+ 
 
-  const [ helloWorld, setHelloWorld ] = useState<IHelloWorld>();
+  // const { data, error, isLoading } = useQuery(['todo', id], () =>
+  //   helloWorldService.getItem(id)
+  // );
 
-
-  useEffect(() => {
-    const request = async () => {
-      setHelloWorld(await helloWorldService.getItem(2));
+  const { data, error, isLoading } = useQuery<IHelloWorld>({
+    queryKey: ["todo"],
+    queryFn: async () => await helloWorldService.getItem(2),
+    initialData: {
+      userId: 0,
+      id: 0,
+      title: "",
+      completed: false
     }
+  });
 
-    request()
-  }, []);
-
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading data</div>;
 
   return (
-   <main>
-      <ul className = "p-2">
-        <li>ID: { helloWorld?.id }</li>
-        <li>UserID: { helloWorld?.userId }</li>
-        <li>Title: { helloWorld?.title }</li>
-        <li>Completed: { helloWorld?.completed ? "Готово" : "Не готово" }</li>
-      </ul>
-   </main>
+    <div>
+      <h1>Data for item {data?.id}:</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
   );
 }
