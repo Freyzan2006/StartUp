@@ -1,0 +1,4 @@
+Файлы backend.bat и frontend.bat помогаю быстра
+запускать backend и frontend части (на windows)
+
+requirements.txt - хранит все зависимости backend

@@ -1,6 +1,2 @@
-obj
-bin
-Web1.sln
- SQL Server files
-*.mdf
-*.ldf
+.venv
+__pycache__
