@@ -1,7 +1,7 @@
 
 
 import type { Metadata } from "next";
-import { geistMono, geistSans } from "../config/fonts";
+import { geistMono, geistSans } from "../app/config/fonts";
 import "./globals.css";
 
 import QueryClientProviderWrapper from "@/components/layout/QueryClientProviderWrapper";
