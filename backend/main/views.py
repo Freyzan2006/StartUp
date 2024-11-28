@@ -1,7 +1,7 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 def hi(request):
     if request.method == "GET":
-        return HttpResponse("<h1>Hello World</h1>")
+        return JsonResponse({"message":"Hello World"})
     else:
-        return HttpResponse("<h1>List Not Found</h1>")
+        return JsonResponse({"message":"Not Found"})
