@@ -5,6 +5,8 @@ import { geistMono, geistSans } from "../config/fonts";
 import "./globals.css";
 
 import QueryClientProviderWrapper from "@/components/layout/QueryClientProviderWrapper";
+import ReduxProvider from "@/components/layout/ReduxProvider";
+
 
 
 export const metadata: Metadata = {
@@ -28,16 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        
-        
-
-        <QueryClientProviderWrapper>{children}</QueryClientProviderWrapper>
-
-       
-        
-     
-        
-       
+        <ReduxProvider>
+          <QueryClientProviderWrapper>
+            {children}
+          </QueryClientProviderWrapper>
+        </ReduxProvider>
       </body>
     </html>
   );
